@@ -1,0 +1,81 @@
+2025-04-06T13:38:09.26Z 20.4|-19876 UL [0600] [06: Access Request Message]         70(CAL) ISC    tmsi:80080102 lac:4019 sca:4038 v:1 xyz=(-0542,+1096,+1019),0              ds:-20620Hz pd:04193us t:2025-04-06T13:38:08.90Z {1c:18.28.c1.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00} CAND-POWER: SAME(44)=11 SAME(35)=17 SAME(37)=02 SAME(13)=00 SAME(43)=02 SAME(38)=12 
+2025-04-06T13:38:09.98Z 20.4|-19766 UL [0635] [06: ?]                              03 20 30 10  | . 0.
+2025-04-06T13:38:10.07Z 20.4|-19751 UL [0524] [MM: CM Service Request]             key=5 [MO call/pkt mode] [CM2:281800] tmsi:80080102 
+2025-04-06T13:38:10.79Z 20.4|-19672 UL [0514] [MM: Authentication Response]        e6 62 07 0b  | .b..
+2025-04-06T13:38:11.33Z 20.4|-19565 UL [0305] [CC: Setup]                          BC[rate:reserved,speech] dest:[+8617710939317] 
+2025-04-06T13:38:11.51Z 20.4|-19542 UL [0519] [MM: Identity response]              imei:300115061335220 
+2025-04-06T13:38:14.30Z 22.7|-19134 UL [030f] [CC: Connect Acknowledge]            
+2025-04-06T13:38:23.46Z 07.6|-17995 UL [033d] [CC: ?]                              02 e0 e2 ca  | ....
+2025-04-06T13:38:33.10Z 09.5|-16822 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:38:33.64Z 09.5|-16778 UL [032a] [CC: Release Complete]                
+2025-04-06T13:39:11.71Z 07.7|-13182 UL [0600] [06: Access Request Message]         70(CAL) ISC    tmsi:80080102 lac:4019 sca:4038 v:1 xyz=(-0542,+1096,+1019),0              ds:-27340Hz pd:05133us t:2025-04-06T13:39:11.36Z {1c:18.2c.c1.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00} CAND-POWER: SAME(35)=15 SAME(37)=11 CROSS_RIGHT_CO_AFT(05)=01 SAME(44)=09 IN_AFT(21)=01 CROSS_RIGHT_CO_AFT(03)=00 
+2025-04-06T13:39:12.97Z 07.7|-13086 UL [0635] [06: ?]                              03 20 30 10  | . 0.
+2025-04-06T13:39:13.06Z 07.7|-13089 UL [0524] [MM: CM Service Request]             key=6 [MO call/pkt mode] [CM2:281800] tmsi:80080102 
+2025-04-06T13:39:13.78Z 07.7|-13018 UL [0514] [MM: Authentication Response]        ad 3a 88 04  | .:..
+2025-04-06T13:39:14.68Z 07.7|-12953 UL [0305] [CC: Setup]                          BC[rate:reserved,speech] dest:[+8617710939317] 
+2025-04-06T13:39:15.13Z 07.7|-12926 UL [0519] [MM: Identity response]              imei:300115061335220 
+2025-04-06T13:39:17.09Z 08.2|-12775 UL [030f] [CC: Connect Acknowledge]            
+2025-04-06T13:39:34.55Z 08.2|-11602 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:39:35.45Z 08.2|-11561 UL [032a] [CC: Release Complete]                
+2025-04-06T13:40:01.83Z 08.5|-10151 UL [0600] [06: Access Request Message]         70(CAL) ISC    tmsi:80080102 lac:4019 sca:4038 v:1 xyz=(-0542,+1096,+1019),0              ds:-30390Hz pd:06029us t:2025-04-06T13:40:01.49Z {1c:18.23.c1.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00} CAND-POWER: SAME(37)=18 SAME(38)=00 IN_AFT(22)=04 CROSS_RIGHT_CO_AFT(05)=04 IN_AFT(19)=00 
+2025-04-06T13:40:02.64Z 08.5|-10109 UL [0635] [06: ?]                              03 20 30 10  | . 0.
+2025-04-06T13:40:02.73Z 08.5|-10111 UL [0524] [MM: CM Service Request]             key=0 [MO call/pkt mode] [CM2:281800] tmsi:80080102 
+2025-04-06T13:40:03.45Z 08.5|-10078 UL [0514] [MM: Authentication Response]        f6 02 c0 cb  | ....
+2025-04-06T13:40:03.99Z 08.5|-10058 UL [0305] [CC: Setup]                          BC[rate:reserved,speech] dest:[+8617710939317] 
+2025-04-06T13:40:04.08Z 08.5|-10045 UL [0519] [MM: Identity response]              imei:300115061335220 
+2025-04-06T13:40:05.25Z 08.5|-09992 UL [030f] [CC: Connect Acknowledge]            
+2025-04-06T13:40:22.26Z 08.5|-09298 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:40:22.71Z 08.5|-09293 UL [032a] [CC: Release Complete]                
+2025-04-06T13:41:01.67Z 08.4|-08061 UL [0600] [06: Access Request Message]         70(CAL) ISC    tmsi:80080102 lac:4019 sca:4038 v:1 xyz=(-0542,+1096,+1019),0              ds:-32470Hz pd:07199us t:2025-04-06T13:41:01.34Z {1c:18.25.c1.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00} CAND-POWER: SAME(37)=14 SAME(38)=12 CROSS_RIGHT_CO_AFT(03)=02 CROSS_RIGHT_CO_AFT(05)=00 IN_AFT(21)=04 
+2025-04-06T13:41:02.48Z 08.4|-08038 UL [0635] [06: ?]                              03 20 30 10  | . 0.
+2025-04-06T13:41:02.57Z 08.4|-08043 UL [0524] [MM: CM Service Request]             key=1 [MO call/pkt mode] [CM2:281800] tmsi:80080102 
+2025-04-06T13:41:03.20Z 08.4|-08024 UL [0514] [MM: Authentication Response]        4b 53 00 10  | KS..
+2025-04-06T13:41:03.74Z 08.4|-08023 UL [0305] [CC: Setup]                          BC[rate:reserved,speech] dest:[+8617710939317] 
+2025-04-06T13:41:04.10Z 08.4|-08008 UL [0519] [MM: Identity response]              imei:300115061335220 
+2025-04-06T13:41:05.36Z 08.4|-07968 UL [030f] [CC: Connect Acknowledge]            
+2025-04-06T13:41:23.12Z 07.4|-07560 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:41:25.82Z 07.4|-07515 UL [032a] [CC: Release Complete]                
+2025-04-06T13:41:26.99Z 07.4|-07477 UL [032a] [CC: Release Complete]                
+2025-04-06T13:43:31.61Z 24.2|+20438 UL [0600] [06: Access Request Message]         70(CAL) ISC    tmsi:80080102 lac:4019 sca:4038 v:1 xyz=(-0542,+1096,+1019),0              ds:+22380Hz pd:05109us t:2025-04-06T13:43:31.37Z {1c:18.25.c1.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00} 
+2025-04-06T13:43:32.42Z 24.2|+20529 UL [0635] [06: ?]                              03 20 30 10  | . 0.
+2025-04-06T13:43:32.51Z 24.2|+20540 UL [0524] [MM: CM Service Request]             key=2 [MO call/pkt mode] [CM2:281800] tmsi:80080102 
+2025-04-06T13:43:33.14Z 24.2|+20603 UL [0514] [MM: Authentication Response]        6e e5 6d 86  | n.m.
+2025-04-06T13:43:33.68Z 24.2|+20664 UL [0519] [MM: Identity response]              imei:300115061335220 
+2025-04-06T13:43:33.77Z 24.2|+20676 UL [0305] [CC: Setup]                          BC[rate:reserved,speech] dest:[+8617710939317] 
+2025-04-06T13:43:35.03Z 24.3|-20828 UL [030f] [CC: Connect Acknowledge]            
+2025-04-06T13:43:54.02Z 24.3|-18544 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:43:54.56Z 24.3|-18489 UL [032a] [CC: Release Complete]                
+2025-04-06T13:44:32.12Z 23.1|-12814 UL [0600] [06: Access Request Message]         70(CAL) ISC    tmsi:80080102 lac:4019 sca:4038 v:1 xyz=(-0542,+1096,+1019),0              ds:+14000Hz pd:04422us t:2025-04-06T13:44:31.76Z {1c:6d.16.c1.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00} CAND-POWER: SAME(23)=08 SAME(40)=01 SAME(45)=20 CROSS_RIGHT_CO_FORE(08)=00 SAME(41)=24 CROSS_RIGHT_CO_FORE(01)=06 
+2025-04-06T13:44:32.93Z 23.1|-12678 UL [0635] [06: ?]                              03 20 30 10  | . 0.
+2025-04-06T13:44:33.02Z 23.1|-12654 UL [0524] [MM: CM Service Request]             key=3 [MO call/pkt mode] [CM2:281800] tmsi:80080102 
+2025-04-06T13:44:33.65Z 23.1|-12554 UL [0514] [MM: Authentication Response]        69 e3 e3 43  | i..C
+2025-04-06T13:44:34.19Z 23.1|-12454 UL [0305] [CC: Setup]                          BC[rate:reserved,speech] dest:[+8617710939317] 
+2025-04-06T13:44:34.37Z 23.1|-12428 UL [0519] [MM: Identity response]              imei:300115061335220 
+2025-04-06T13:44:35.63Z 23.1|-12205 UL [030f] [CC: Connect Acknowledge]            
+2025-04-06T13:44:52.53Z 13.7|-09125 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:44:52.98Z 13.7|-09041 UL [032a] [CC: Release Complete]                
+2025-04-06T13:45:36.65Z 19.3|-00200 UL [0600] [06: Access Request Message]         70(CAL) ISC    tmsi:80080102 lac:4019 sca:4038 v:1 xyz=(-0542,+1096,+1019),0              ds:+01370Hz pd:04109us t:2025-04-06T13:45:36.29Z {1c:6d.17.c1.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00} CAND-POWER: SAME(40)=24 SAME(36)=11 SAME(46)=13 SAME(33)=17 SAME(48)=00 SAME(34)=09 
+2025-04-06T13:45:37.46Z 19.3|-00042 UL [0635] [06: ?]                              03 20 30 10  | . 0.
+2025-04-06T13:45:37.55Z 19.3|-00028 UL [0524] [MM: CM Service Request]             key=4 [MO call/pkt mode] [CM2:281800] tmsi:80080102 
+2025-04-06T13:45:38.63Z 19.3|+00193 UL [0514] [MM: Authentication Response]        8a 6c 78 8f  | .lx.
+2025-04-06T13:45:39.17Z 19.3|+00329 UL [0305] [CC: Setup]                          BC[rate:reserved,speech] dest:[+8617710939317] 
+2025-04-06T13:45:39.26Z 19.3|+00361 UL [0519] [MM: Identity response]              imei:300115061335220 
+2025-04-06T13:45:40.34Z 19.3|+00576 UL [030f] [CC: Connect Acknowledge]            
+2025-04-06T13:45:58.07Z 19.3|+04329 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:45:58.61Z 19.3|+04424 UL [032a] [CC: Release Complete]                
+2025-04-06T13:47:06.90Z 20.3|+17215 UL [0600] [06: Access Request Message]         70(CAL) ISC    tmsi:80080102 lac:4019 sca:4038 v:1 xyz=(-0542,+1096,+1019),0              ds:-16040Hz pd:04544us t:2025-04-06T13:47:06.56Z {1c:6d.28.c1.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00} CAND-POWER: SAME(42)=04 CROSS_RIGHT_CO_AFT(07)=02 CROSS_RIGHT_CO_AFT(29)=04 CROSS_RIGHT_CO_AFT(12)=02 SAME(46)=00 SAME(43)=02 
+2025-04-06T13:47:08.25Z 20.3|+17426 UL [0635] [06: ?]                              03 20 30 10  | . 0.
+2025-04-06T13:47:08.70Z 20.3|+17478 UL [0524] [MM: CM Service Request]             key=5 [MO call/pkt mode] [CM2:281800] tmsi:80080102 
+2025-04-06T13:47:11.13Z 20.3|+17848 UL [0514] [MM: Authentication Response]        c5 11 c6 9c  | ....
+2025-04-06T13:47:12.21Z 20.3|+18017 UL [0305] [CC: Setup]                          BC[rate:reserved,speech] dest:[+8617710939317] 
+2025-04-06T13:47:12.39Z 20.3|+18049 UL [0519] [MM: Identity response]              imei:300115061335220 
+2025-04-06T13:47:13.83Z 20.3|+18268 UL [030f] [CC: Connect Acknowledge]            
+2025-04-06T13:47:31.20Z 22.7|-20799 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:47:32.28Z 22.7|-20644 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:47:33.36Z 22.7|-20481 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:47:34.44Z 22.7|-20321 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+2025-04-06T13:47:35.52Z 22.7|-20160 UL [0325] [CC: Disconnect]                     Loc:user  Cause(16) Normal call clearing 
+Kept 122/3436 (3.6%) lines
+8 valid packets assembled from 23 fragments (1:2.88).
+0/23 (0.0%) broken fragments.
+22 dupes removed.
