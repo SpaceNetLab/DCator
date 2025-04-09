@@ -60,8 +60,6 @@ df = pd.read_csv('examples/trace_raw.csv')
 start_time,freqs = extract_frequency('examples/output.parsed')
 
 # change the location of satellite locator
-#ue_loc = [40.0038889,116.3252778]
-#ue_loc = [39.9961111,116.3263889]
 ue_loc = [40.0038889,116.3258333]
 
 
