@@ -33,15 +33,8 @@ DCator provides an example to extract location clues:
 1. Use ```gr-iridium``` to collect ```.bits``` file.
 2. Use ```iridium-parser.py``` in ```iridium-toolkit``` to generate ```.parsed``` file and use ```reassembler.py``` to decode the messages under ```idapp``` mode. We provide an example in ```examples/output.parsed``` and ```examples/message.txt```.
 3. Download the TLE data from [NORAD](https://celestrak.org/NORAD/elements/). We provide an example in ```TLE/iridium.txt```.
-4. Run ```extract_data.py``` to extract location clues and it generates ```examples/trace_raw.csv``` file:
-```
-python3 extract_data.py
-```
-1. Set the location of the satellite locator in ```satellite_locator.py``` and run it:
-```
-python3 satellite_locator.py
-```
-Finally, we get ```trace_delay_1.csv```, ```trace_delta_delay_1.csv```, ```trace_doppler_1.csv``` in ```examples```.
+4. Run ```extract_data.py``` to extract location clues and it generates ```examples/trace_raw.csv``` file.
+5. Set the location of the satellite locator in ```satellite_locator.py``` and run it. Finally, we get ```trace_delay_1.csv```, ```trace_delta_delay_1.csv```, ```trace_doppler_1.csv``` in ```examples```.
 
 ### Large-scale simulation
 
@@ -49,10 +42,4 @@ We provide a simulator to mimic large number of UEs in ```simulator.py```. It ge
 
 ### Location inference
 
-To infer the locations of UEs, DCator provides three analyzers: ```analyzer_delay.py```, ```analyzer_delta_delay.py```, ```analyzer_doppler.py```. Set the number of UEs and then run the analyzers to infer the locations based on different location clues:
-```
-python3 analyzer_delay.py
-python3 analyzer_delta_delay.py
-python3 analyzer_doppler.py
-```
-Results are shown in ```result_delay_{ue_num}.csv```, ```result_delta_delay_{ue_num}.csv```, ```result_doppler_{ue_num}.csv``` in ```examples``` respectively.
+To infer the locations of UEs, DCator provides three analyzers: ```analyzer_delay.py```, ```analyzer_delta_delay.py```, ```analyzer_doppler.py```. Set the number of UEs and then run the analyzers to infer the locations based on different location clues. Results are shown in ```result_delay_{ue_num}.csv```, ```result_delta_delay_{ue_num}.csv```, ```result_doppler_{ue_num}.csv``` in ```examples``` respectively.
