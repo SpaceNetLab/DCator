@@ -60,11 +60,12 @@ df = pd.read_csv('examples/trace_raw.csv')
 start_time,freqs = extract_frequency('examples/output.parsed')
 
 # change the location of satellite locator
-#ue_loc = [116.3252778,40.0038889]
-ue_loc = [116.3263889,39.9961111]
+#ue_loc = [40.0038889,116.3252778]
+#ue_loc = [39.9961111,116.3263889]
+ue_loc = [40.0038889,116.3258333]
 
 
-ue_cbf = wgs84.latlon(ue_loc[1], ue_loc[0], 0).itrs_xyz.km
+ue_cbf = wgs84.latlon(ue_loc[0], ue_loc[1], 0).itrs_xyz.km
 # print(ue_cbf)
 
 datetime_format = '%Y-%m-%dT%H:%M:%S.%f'
@@ -143,24 +144,24 @@ for t in range(l):
     res.append(freq)
     result.append(res)
 
-real_delay = np.array(real_delay)
-real_doppler = np.array(real_doppler)
-print((df['latency']-real_delay)/real_delay*100)
-print((df['doppler']-real_doppler)/real_doppler*100)
+#real_delay = np.array(real_delay)
+#real_doppler = np.array(real_doppler)
+#print((df['latency']-real_delay)/real_delay*100)
+#print((df['doppler']-real_doppler)/real_doppler*100)
 
 result = pd.DataFrame(result,columns=['x','y','z','lon','lat','alt','delay','vx','vy','vz','doppler','freq'])
 
 # gen delay trace
 result_delay = result[['x','y','z','delay']]
-result_delay.to_csv('examples/trace_delay.csv', index=False)
+result_delay.to_csv('examples/trace_delay_1.csv', index=False)
 
 # gen delta delay trace
 result_delta_delay = []
 for t in range(l-1):
     result_delta_delay.append([result['x'][t],result['y'][t],result['z'][t],result['x'][t+1],result['y'][t+1],result['z'][t+1],result['delay'][t+1]-result['delay'][t]])
 result_delta_delay = pd.DataFrame(result_delta_delay,columns=['x1','y1','z1','x2','y2','z2','delta'])
-result_delta_delay.to_csv('examples/trace_delta_delay.csv', index=False)
+result_delta_delay.to_csv('examples/trace_delta_delay_1.csv', index=False)
 
 # gen Doppler trace
-result_doppler = result[['x','y','z','vx','vy','vz','delay','freq','doppler']]
-result_doppler.to_csv('examples/trace_doppler.csv', index=False)
+result_doppler = result[['x','y','z','vx','vy','vz','freq','doppler']]
+result_doppler.to_csv('examples/trace_doppler_1.csv', index=False)

@@ -10,41 +10,40 @@ import random
 import multiprocessing as mp
 import pandas as pd
 
-light_speed = 299.792458  # 单位km/ms
+light_speed = 299.792458  # km/ms
 
-ue_pos = []  # 用户blh位置 lat lon alt
-ue_pos_cbf = []  # 用户cbf位置
-est_ue_pos = []  # 估计的blh位置
-est_ue_pos_cbf = []  # 估计的cbf位置
-difdis = []  # 误差——计算cbf位置与目标cbf位置距离
+ue_pos = []  
+ue_pos_cbf = []  
+est_ue_pos = []  
+est_ue_pos_cbf = []  
+difdis = []  
 
 
 def to_cbf(lat, lon, alt):
     '''
     transform (latitude, longitude, altitude) to cbf
     '''
-    cbf = list(wgs84.latlon(lat, lon, alt * 1000).itrs_xyz.km)  # 海拔单位为m
+    cbf = list(wgs84.latlon(lat, lon, alt * 1000).itrs_xyz.km) 
     return cbf
 
 def to_blh(x, y, z):
-    a = 6378.137  # 地球的半长轴 单位km
-    f = 1 / 298.257223563  # 扁率
-    e2 = 2 * f - f ** 2  # 第一偏心率平方
-    b = a * np.sqrt(1 - e2)  # 半短轴
-    e2_prime = e2 / (1 - e2)  # 第二偏心率平方
+    a = 6378.137  
+    f = 1 / 298.257223563  
+    e2 = 2 * f - f ** 2  
+    b = a * np.sqrt(1 - e2)  
+    e2_prime = e2 / (1 - e2)  
     
-    lon = np.arctan2(y, x)  # 单位弧度
+    lon = np.arctan2(y, x)  
 
     p = np.sqrt(x ** 2 + y ** 2)
     theta = np.arctan2(z * a, p * b)
     phi = np.arctan2(z + e2_prime * b * np.sin(theta) ** 3,
                      p - e2 * a * np.cos(theta) ** 3)
 
-    # 计算曲率半径和高度
+    
     N = a / np.sqrt(1 - e2 * np.sin(phi) ** 2)
-    alt = (p / np.cos(phi) - N) / 1000  # 单位km
+    alt = (p / np.cos(phi) - N) / 1000  
 
-    # 转换单位度
     lat = np.degrees(phi)
     lon = np.degrees(lon)
 
@@ -68,20 +67,17 @@ def get_ue_loc(loc_file):
             ue_loc_cbf.append(to_cbf(float(row[0]), float(row[1]), 0))
     return ue_loc, ue_loc_cbf
 
-def init_paras(trace_file, ue_idx):
-
-    df = pd.read_csv(trace_file)
-    dis = df['delay']*light_speed
-    sat_pos_cbf = df[['x','y','z']]
-    sat_vel = df[['vx','vy','vz']]
-    doppler = df['doppler']
-    freq = df['freq']
-    return np.array(dis), np.array(sat_pos_cbf), np.array(sat_vel), np.array(doppler), np.array(freq)
+def init_paras(trace):
+    sat_pos_cbf = trace[['x','y','z']]
+    sat_vel = trace[['vx','vy','vz']]
+    doppler = trace['doppler']
+    freq = trace['freq']
+    return np.array(sat_pos_cbf), np.array(sat_vel), np.array(doppler), np.array(freq)
 
 def gen_init_pt(ue_pos, set_dis):
-    '''随机生成一个到ground truth固定距离的搜索起始点(cbf)'''
-    bearing = random.uniform(0, 2 * math.pi)  # 随机生成方位角
-    distance = set_dis  # 观测者距离ground truth 单位km
+    # randomly generate the location of satellite locator for large-scale simulation
+    bearing = random.uniform(0, 2 * math.pi)  
+    distance = set_dis  
     lat, lon = ue_pos[0], ue_pos[1]
     lat_rad = math.radians(lat)
     lon_rad = math.radians(lon)
@@ -98,22 +94,22 @@ def gen_init_pt(ue_pos, set_dis):
     print(cal_dis(to_cbf(ue_pos[0], ue_pos[1], 0), init_pt_cbf))
     return init_pt_cbf
 
-def optimize_with_gurobi(sat_pos_cbf, dis, initial_guess, sat_vel, doppler, freq, timelimit, ue_num):
+def optimize_with_gurobi(sat_pos_cbf, initial_guess, sat_vel, doppler, freq, timelimit, ue_num):
 
     model = gp.Model("UE_position_optimization")
 
-    # 设置模型参数
-    model.setParam('TimeLimit', timelimit/ue_num)  # 设置求解时间限制 
-    model.setParam('MIPGap', 1e-3)    # 小于最优性容差视为解 
-    model.setParam('MIPFocus', 1)  # 1 更关注找到解 2 更关注找到最优解
-    model.setParam('Threads', 0)      # 设置使用8个线程 设置为0会自动调用空余线程
-    model.setParam('Heuristics', 0.5) # 设置启发式方法的频率/强度 
-    model.setParam('FeasibilityTol', 0.0000001)  # 可行解的精度限制 最小1e-9
-    model.setParam('OptimalityTol', 0.00000001)  # 最优解的精度限制 最小1e-9
+    # model parameters
+    model.setParam('TimeLimit', timelimit/ue_num)  
+    model.setParam('MIPGap', 1e-3)   
+    model.setParam('MIPFocus', 1) 
+    model.setParam('Threads', 0)     
+    model.setParam('Heuristics', 0.5) 
+    model.setParam('FeasibilityTol', 1e-3) 
+    model.setParam('OptimalityTol', 1e-3)  
 
     bounds = [-6379, 6379]
 
-    # 决策变量
+    # variables
     x = model.addVar(lb=bounds[0], ub=bounds[1], name="x")
     y = model.addVar(lb=bounds[0], ub=bounds[1], name="y")
     z = model.addVar(lb=bounds[0], ub=bounds[1], name="z")
@@ -135,15 +131,14 @@ def optimize_with_gurobi(sat_pos_cbf, dis, initial_guess, sat_vel, doppler, freq
         doppler_sq_vars.append(doppler_sq_var)
 
 
-    for i, (sat_pos, obs_dis, vel, obs_dp, f) in enumerate(zip(sat_pos_cbf, dis, sat_vel, doppler, freq)):
+    for i, (sat_pos, vel, obs_dp, f) in enumerate(zip(sat_pos_cbf, sat_vel, doppler, freq)):
         model.addConstr(dist_sqrt_vars[i]**2 == (sat_pos[0]-x)**2 + (sat_pos[1]-y)**2 + (sat_pos[2]-z)**2)
         model.addConstr(doppler_vars[i] * dist_sqrt_vars[i] == (vel[0]*(x-sat_pos[0])+vel[1]*(y-sat_pos[1])+vel[2]*(z-sat_pos[2]))*f/light_speed/1e3)
-        #model.addConstr(doppler_vars[i] * obs_dis == (vel[0]*(x-sat_pos[0])+vel[1]*(y-sat_pos[1])+vel[2]*(z-sat_pos[2]))*f/light_speed/1e3)
         model.addConstr(doppler_sq_vars[i] == doppler_vars[i] - obs_dp)
 
     model.addConstr((initial_guess[0]-x)**2 + (initial_guess[1]-y)**2 + (initial_guess[2]-z)**2 <= 24**2)
 
-    ### 构建目标函数
+    # optimization target
     objective = gp.quicksum(doppler_sq_vars[i]**2 for i in range(len(doppler_sq_vars)))
     model.setObjective(objective, GRB.MINIMIZE)
     model.optimize()
@@ -155,15 +150,15 @@ def optimize_with_gurobi(sat_pos_cbf, dis, initial_guess, sat_vel, doppler, freq
         print("No optimal solution found.")
         return None
 
-def get_pos(trace_file, est_ue_loc_file, ue_pos, ue_pos_cbf, ue_idx, timelimit, ue_num):
+def get_pos(trace, est_ue_loc_file, ue_pos, ue_pos_cbf, ue_idx, timelimit, ue_num):
 
-    dis, sat_pos_cbf, sat_vel, doppler, freq = init_paras(trace_file, ue_idx)
+    sat_pos_cbf, sat_vel, doppler, freq = init_paras(trace)
     initial_guesses = gen_init_pt(ue_pos, 10)
     with open(est_ue_loc_file, 'a', newline='') as file:
         writer = csv.writer(file)            
 
         t = time.time()
-        result = optimize_with_gurobi(sat_pos_cbf, dis, initial_guesses, sat_vel, doppler, freq, timelimit, ue_num)
+        result = optimize_with_gurobi(sat_pos_cbf, initial_guesses, sat_vel, doppler, freq, timelimit, ue_num)
 
         if result:
             est_ue_pos.append(to_blh(result[0], result[1], result[2]))
@@ -185,20 +180,22 @@ def get_pos(trace_file, est_ue_loc_file, ue_pos, ue_pos_cbf, ue_idx, timelimit, 
 
 if __name__ == "__main__":
 
-    timelimit = 60 # second
-    ue_num = 1 # number of users
-    ue_loc, ue_loc_cbf = get_ue_loc('examples/ue_loc.csv')
-    trace_file = 'examples/trace_doppler.csv'
-    est_ue_loc_file = 'examples/result_doppler.csv'
+    timelimit = 180 # second
+    ue_num = 200 # number of users
+    ue_loc, ue_loc_cbf = get_ue_loc(f'examples/ue_loc_{ue_num}.csv')
+    trace_file = f'examples/trace_doppler_{ue_num}.csv'
+    est_ue_loc_file = f'examples/result_doppler_{ue_num}.csv'
     
+    trace = pd.read_csv(trace_file)
+    l = len(trace)//ue_num
+
     pool = mp.Pool(processes=mp.cpu_count()) 
     
     tasks = []
     for ue_idx in range(ue_num):
         ue_pos = ue_loc[ue_idx]
         ue_pos_cbf = ue_loc_cbf[ue_idx]
-        task = get_pos(trace_file, est_ue_loc_file, ue_pos, ue_pos_cbf, ue_idx, timelimit, ue_num)
+        task = get_pos(trace.loc[l*ue_idx:l*(ue_idx+1)-1], est_ue_loc_file, ue_pos, ue_pos_cbf, ue_idx, timelimit, ue_num)
         tasks.append(task)
 
-    # 使用进程池并行执行任务
     res = pool.map_async(get_pos, tasks)
