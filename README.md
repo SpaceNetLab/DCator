@@ -20,7 +20,7 @@ Use the sniffer to collect data and extract the location clues in ```.csv``` fil
 ```
 x,y,z,delay
 ```
-- $\Delta$delay-based method: positions of satellites and $\Delta$delay
+- delta-delay-based method: positions of satellites and delay variation
 ```
 x1,y1,z1,x2,y2,z2,delta
 ```
@@ -37,7 +37,7 @@ DCator provides an example to extract location clues:
 ```
 python3 extract_data.py
 ```
-5. Set the location of the satellite locator in ```satellite_locator.py``` and run it:
+1. Set the location of the satellite locator in ```satellite_locator.py``` and run it:
 ```
 python3 satellite_locator.py
 ```
