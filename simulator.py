@@ -105,8 +105,8 @@ def gen_trace(ue_loc_file, ue_num, interval, duration, tle_file, tle_type):
             dop = sum(sats_info[s]['vel'][time_idx]*(ue_cbf-sats_info[s]['cbf'][time_idx])*freq/(delay*light_speed*light_speed*1e3)) 
 
             # simulate random systematic error 
-            delay = delay * (1+ random.uniform(-0.1, 0.1)/100)
-            dop = dop * (1+ random.uniform(-0.1, 0.1)/100)
+            delay = delay * (1+ random.uniform(-0.05, 0.05)/100)
+            dop = dop * (1+ random.uniform(-0.05, 0.05)/100)
         
             if time_idx>0:
                 trace_delta_delay.append([trace_delay[-1][0],trace_delay[-1][1],trace_delay[-1][2],x,y,z,delay-trace_delay[-1][3]])
