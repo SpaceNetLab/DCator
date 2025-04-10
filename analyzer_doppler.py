@@ -12,13 +12,6 @@ import pandas as pd
 
 light_speed = 299.792458  # km/ms
 
-ue_pos = []  
-ue_pos_cbf = []  
-est_ue_pos = []  
-est_ue_pos_cbf = []  
-difdis = []  
-
-
 def to_cbf(lat, lon, alt):
     '''
     transform (latitude, longitude, altitude) to cbf
@@ -47,7 +40,7 @@ def to_blh(x, y, z):
     lat = np.degrees(phi)
     lon = np.degrees(lon)
 
-    return [lon, lat, alt]
+    return [lat, lon, alt]
 
 def cal_dis(sat_cbf, pt_cbf):
     return np.sqrt(np.square(sat_cbf[0]-pt_cbf[0])+np.square(sat_cbf[1]-pt_cbf[1])+np.square(sat_cbf[2]-pt_cbf[2]))      
@@ -161,18 +154,18 @@ def get_pos(trace, est_ue_loc_file, ue_pos, ue_pos_cbf, ue_idx, timelimit, ue_nu
         result = optimize_with_gurobi(sat_pos_cbf, initial_guesses, sat_vel, doppler, freq, timelimit, ue_num)
 
         if result:
-            est_ue_pos.append(to_blh(result[0], result[1], result[2]))
-            est_ue_pos_cbf.append(to_cbf(est_ue_pos[-1][1], est_ue_pos[-1][0], 0))
-            difdis.append(cal_dis(ue_pos_cbf, est_ue_pos_cbf[-1]))  
-            writer.writerow(['lon', 'lat', 'x', 'y', 'z', 'difdis', 'time', 'ue_idx'])
-            writer.writerow([est_ue_pos[-1][0], est_ue_pos[-1][1], est_ue_pos_cbf[-1][0], est_ue_pos_cbf[-1][1], est_ue_pos_cbf[-1][2], difdis[-1], time.time()-t, ue_idx])
-            print("Estimated UE position in CBF:", est_ue_pos_cbf[-1])
+            est_ue_pos = to_blh(result[0], result[1], result[2])
+            est_ue_pos_cbf = result
+            difdis = cal_dis(ue_pos_cbf, est_ue_pos_cbf)  
+            writer.writerow(['lat', 'lon', 'x', 'y', 'z', 'difdis', 'time', 'ue_idx'])
+            writer.writerow([est_ue_pos[0], est_ue_pos[1], est_ue_pos_cbf[0], est_ue_pos_cbf[1], est_ue_pos_cbf[2], difdis, time.time()-t, ue_idx])
+            print("Estimated UE position in CBF:", est_ue_pos_cbf)
             print("Real UE position in CBF:", ue_pos_cbf)
-            print("Estimated UE position in BLH:", est_ue_pos[-1])
+            print("Estimated UE position in BLH:", est_ue_pos)
             print("Real UE position in BLH:", ue_pos)
-            print("Difference in distance:", difdis[-1])
+            print("Difference in distance:", difdis)
         else:
-            writer.writerow(['lon', 'lat', 'x', 'y', 'z', 'difdis', 'time', 'ue_idx'])
+            writer.writerow(['lat', 'lon', 'x', 'y', 'z', 'difdis', 'time', 'ue_idx'])
             writer.writerow([0, 0, 0, 0, 0, 0, 0, 0])
             print("Optimization failed to find a solution.")
 
@@ -181,7 +174,7 @@ def get_pos(trace, est_ue_loc_file, ue_pos, ue_pos_cbf, ue_idx, timelimit, ue_nu
 if __name__ == "__main__":
 
     timelimit = 180 # second
-    ue_num = 200 # number of users
+    ue_num = 1 # number of users
     ue_loc, ue_loc_cbf = get_ue_loc(f'examples/ue_loc_{ue_num}.csv')
     trace_file = f'examples/trace_doppler_{ue_num}.csv'
     est_ue_loc_file = f'examples/result_doppler_{ue_num}.csv'
