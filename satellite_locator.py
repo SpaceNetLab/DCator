@@ -42,7 +42,8 @@ def extract_frequency(filename):
         time_ms = float(data[2])
         freq = int(data[3])
         confidence = int(data[4][:-1])
-        freqs.append([time_ms,freq,confidence])
+        lcw = "LCW" in line
+        freqs.append([time_ms,freq,confidence,lcw])
         
     f.close()
     return start_time,freqs
@@ -132,7 +133,7 @@ for t in range(l):
     # select the frequency with the highest confidence
     index = -1
     for j in range(len(freqs)):
-        if abs(delta_time-freqs[j][0])<10 and (index==-1 or freqs[index][2]<=freqs[j][2]):
+        if abs(delta_time-freqs[j][0])<10 and freqs[j][3] and (index==-1 or freqs[index][2]<=freqs[j][2]):
             index = j
     freq = freqs[index][1]
     
