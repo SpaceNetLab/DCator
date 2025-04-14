@@ -32,7 +32,7 @@ x,y,z,vx,vy,vz,freq,doppler
 DCator provides an example to extract location clues:
 1. Use ```gr-iridium``` to collect ```.bits``` file.
 2. Use ```iridium-parser.py``` in ```iridium-toolkit``` to generate ```.parsed``` file and use ```reassembler.py``` to decode the messages under ```idapp``` mode. We provide an example in ```examples/output.parsed``` and ```examples/message.txt```.
-3. Download the TLE data from [NORAD](https://celestrak.org/NORAD/elements/). We provide an example in ```TLE/iridium.txt```.
+3. Download the TLE data from [NORAD](https://celestrak.org/NORAD/elements/). We provide an example in ```TLE/Iridium.txt```.
 4. Run ```extract_data.py``` to extract location clues and it generates ```examples/trace_raw.csv``` file.
 5. Set the location of the satellite locator in ```satellite_locator.py``` and run it. Finally, we get ```trace_delay_1.csv```, ```trace_delta_delay_1.csv```, ```trace_doppler_1.csv``` in ```examples```.
 
