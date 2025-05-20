@@ -1,5 +1,7 @@
 # DCator
 
+This repository implements the <u>D</u>irect-to-<u>C</u>ell satellite network terminal lo<u>cator</u> (DCator), which analyzes the consequences if an adversary is able to continuously monitor and process broadcast signaling to deduce the locations of other users within the same satellite coverage area. More details can be found in [S\&P 2025](https://www.computer.org/csdl/proceedings-article/sp/2025/223600b026/26hiU4FcBjy).
+
 ## Prerequisites
 
 DCator is run in python3 and the following libraries should be installed:
