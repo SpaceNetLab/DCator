@@ -1,6 +1,6 @@
 # DCator
 
-This repository implements the <ins>D</ins>irect-to-<ins>C</ins>ell satellite network terminal lo<ins>cator</ins> (DCator), which analyzes the consequences if an adversary is able to continuously monitor and process broadcast signaling to deduce the locations of other users within the same satellite coverage area. More details can be found in [S\&P 2025](https://www.computer.org/csdl/proceedings-article/sp/2025/223600b026/26hiU4FcBjy).
+This repository implements the <ins>D</ins>irect-to-<ins>C</ins>ell satellite network terminal loc<ins>ator</ins> (DCator), which analyzes the consequences if an adversary is able to continuously monitor and process broadcast signaling to deduce the locations of other users within the same satellite coverage area. More details can be found in [S\&P 2025](https://www.computer.org/csdl/proceedings-article/sp/2025/223600b026/26hiU4FcBjy).
 
 ## Prerequisites
 
